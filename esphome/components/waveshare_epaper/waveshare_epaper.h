@@ -810,6 +810,7 @@ class WaveshareEPaper7P5InBV3 : public WaveshareEPaper {
       this->reset_pin_->digital_write(true);
       delay(200);  // NOLINT
     }
+    uint32_t idle_timeout_() override;
   };
 
   void init_display_();

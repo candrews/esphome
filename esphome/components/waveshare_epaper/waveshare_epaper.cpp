@@ -3157,6 +3157,7 @@ void HOT WaveshareEPaper7P5InBV3::display() {
 }
 int WaveshareEPaper7P5InBV3::get_width_internal() { return 800; }
 int WaveshareEPaper7P5InBV3::get_height_internal() { return 480; }
+uint32_t WaveshareEPaper7P5InBV3::idle_timeout_() { return 35000; }
 void WaveshareEPaper7P5InBV3::dump_config() {
   LOG_DISPLAY("", "Waveshare E-Paper", this);
   ESP_LOGCONFIG(TAG, "  Model: 7.5in-bv3");
