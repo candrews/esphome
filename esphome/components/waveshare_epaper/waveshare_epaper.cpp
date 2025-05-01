@@ -3024,7 +3024,7 @@ bool WaveshareEPaper7P5InBV3::wait_until_idle_() {
   while (this->busy_pin_->digital_read()) {
     this->command(0x71);
     if (millis() - start > this->idle_timeout_()) {
-      ESP_LOGI(TAG, "Timeout while displaying image!");
+      ESP_LOGI(TAG, "Timeout waiting %zu displaying image!", this->idle_timeout_());
       return false;
     }
     App.feed_wdt();
