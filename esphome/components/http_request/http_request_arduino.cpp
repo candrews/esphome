@@ -106,6 +106,7 @@ std::shared_ptr<HttpContainer> HttpRequestArduino::perform(std::string url, std:
   for (auto const &header_name : collect_headers) {
     header_keys[index++] = header_name.c_str();
   }
+  ESP_LOGD(TAG, "Collect headers count: %d", index);
   container->client_.collectHeaders(header_keys, index);
 
   App.feed_wdt();
@@ -129,6 +130,7 @@ std::shared_ptr<HttpContainer> HttpRequestArduino::perform(std::string url, std:
   auto header_count = container->client_.headers();
   for (int i = 0; i < header_count; i++) {
     const std::string header_name = str_lower_case(container->client_.headerName(i).c_str());
+    ESP_LOGD(TAG, "Before filter - Received response header, name: %s", header_name.c_str());
     if (collect_headers.count(header_name) > 0) {
       std::string header_value = container->client_.header(i).c_str();
       ESP_LOGD(TAG, "Received response header, name: %s, value: %s", header_name.c_str(), header_value.c_str());

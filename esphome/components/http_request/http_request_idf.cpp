@@ -38,6 +38,7 @@ esp_err_t HttpRequestIDF::http_event_handler(esp_http_client_event_t *evt) {
   switch (evt->event_id) {
     case HTTP_EVENT_ON_HEADER: {
       const std::string header_name = str_lower_case(evt->header_key);
+      ESP_LOGD(TAG, "Before filter - Received response header, name: %s", header_name.c_str());
       if (user_data->collect_headers.count(header_name)) {
         const std::string header_value = evt->header_value;
         ESP_LOGD(TAG, "Received response header, name: %s, value: %s", header_name.c_str(), header_value.c_str());
